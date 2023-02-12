@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Film List</string>
+    <string name="home_cta_refresh">Refreshing</string>
+    <string name="home_no_data">Empty data</string>
+    <string name="home_guideline">Click search button and fill your title</string>
+    <string name="home_no_result">No result</string>
+    <string name="home_number_of_result">%s results</string>
+    <string name="home_search_keyword">Search: %s</string>
+    <string name="retry">Retry</string>
+</resources>

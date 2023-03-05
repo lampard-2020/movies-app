@@ -1,13 +1,11 @@
 package com.omdb.movie.repository
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.omdb.movie.data.Resource
 import com.omdb.movie.data.domain.Movie
 import com.omdb.movie.data.message
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 
 class MoviePagingSource(
     private val movieRepository: MovieRepository,
@@ -20,12 +18,11 @@ class MoviePagingSource(
         return try {
             // Start refresh at page 1 if undefined.
             val pageNumber = params.key ?: 1
-
             when (val result = movieRepository.searchMovie(keyword, pageNumber)) {
                 is Resource.Success -> {
                     val nextPage = pageNumber + 1
                     val nextKey = if (result.value.search.isEmpty()) null else nextPage
-                    if(pageNumber == 1){
+                    if (pageNumber == 1) {
                         numberOfResult.emit(result.value.totalResults)
                     }
                     LoadResult.Page(
@@ -34,7 +31,7 @@ class MoviePagingSource(
                     )
                 }
                 is Resource.Error -> {
-                    if(pageNumber == 1){
+                    if (pageNumber == 1) {
                         numberOfResult.emit(null)
                     }
                     LoadResult.Error(

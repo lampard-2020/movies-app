@@ -36,11 +36,15 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
                 }
 
             override fun onCreate(owner: LifecycleOwner) {
-                fragment.viewLifecycleOwnerLiveData.observeForever(viewLifecycleOwnerLiveDataObserver)
+                fragment.viewLifecycleOwnerLiveData.observeForever(
+                    viewLifecycleOwnerLiveDataObserver
+                )
             }
 
             override fun onDestroy(owner: LifecycleOwner) {
-                fragment.viewLifecycleOwnerLiveData.removeObserver(viewLifecycleOwnerLiveDataObserver)
+                fragment.viewLifecycleOwnerLiveData.removeObserver(
+                    viewLifecycleOwnerLiveDataObserver
+                )
             }
         })
     }
@@ -54,9 +58,14 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
             error("Should not attempt to get bindings when Fragment views are destroyed.")
         }
 
-        return viewBindingFactory(rootView?.invoke() ?: thisRef.requireView()).also { this.binding = it }
+        return viewBindingFactory(rootView?.invoke() ?: thisRef.requireView()).also {
+            this.binding = it
+        }
     }
 }
 
-fun <T : ViewBinding> Fragment.viewBinding(viewBindingFactory: (View) -> T, rootView: (() -> View)? = null) =
+fun <T : ViewBinding> Fragment.viewBinding(
+    viewBindingFactory: (View) -> T,
+    rootView: (() -> View)? = null
+) =
     FragmentViewBindingDelegate(this, viewBindingFactory, rootView)

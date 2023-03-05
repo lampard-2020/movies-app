@@ -1,7 +1,6 @@
 package com.omdb.movie.main.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -16,13 +15,12 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.paging.PagingData
-import androidx.paging.insertSeparators
 import androidx.recyclerview.widget.GridLayoutManager
 import com.omdb.movie.R
 import com.omdb.movie.data.domain.Movie
 import com.omdb.movie.databinding.FragmentHomeBinding
-import com.omdb.movie.main.adapter.MovieResultPagingAdapter
 import com.omdb.movie.main.adapter.LoadStateAdapter
+import com.omdb.movie.main.adapter.MovieResultPagingAdapter
 import com.omdb.movie.main.viewmodel.HomeViewModel
 import com.omdb.movie.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -139,7 +137,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     else -> {
                         binding.textGuideline.isVisible = false
                         binding.textEmpty.isVisible = false
-                        binding.toolbar.subtitle = getString(R.string.home_number_of_result, number.toString())
+                        binding.toolbar.subtitle =
+                            getString(R.string.home_number_of_result, number.toString())
                     }
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)

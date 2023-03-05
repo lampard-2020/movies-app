@@ -5,6 +5,6 @@ object ApiService {
     const val API_BASE_PATH = "https://www.omdbapi.com/"
 }
 
-object ErrorCode{
+object ErrorCode {
     // TODO: Update
 }

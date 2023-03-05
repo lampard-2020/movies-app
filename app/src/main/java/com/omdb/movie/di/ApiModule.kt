@@ -1,7 +1,7 @@
 package com.omdb.movie.di
 
-import com.omdb.movie.BuildConfig
 import com.google.gson.GsonBuilder
+import com.omdb.movie.BuildConfig
 import com.omdb.movie.constant.ApiService
 import com.omdb.movie.service.MovieService
 import dagger.Module

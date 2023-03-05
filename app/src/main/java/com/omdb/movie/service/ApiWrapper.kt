@@ -2,7 +2,6 @@ package com.omdb.movie.service
 
 import com.omdb.movie.data.ErrorType
 import com.omdb.movie.data.Resource
-import com.google.gson.annotations.SerializedName
 import retrofit2.HttpException
 import retrofit2.Response
 import java.io.IOException
@@ -11,7 +10,7 @@ import java.io.IOException
  * Handle only response for retrofit client
  */
 suspend fun <T> safeCallApi(
-    api: suspend() -> Response<T>
+    api: suspend () -> Response<T>
 ): Resource<T> {
     return try {
         val response = api.invoke()
@@ -26,7 +25,8 @@ suspend fun <T> safeCallApi(
             is HttpException -> {
                 val response = throwable.response()
                 ErrorType.NetworkError(
-                    httpCode = response?.code(),  message = response?.message() ?: throwable.localizedMessage
+                    httpCode = response?.code(),
+                    message = response?.message() ?: throwable.localizedMessage
                 )
             }
             is IOException -> {

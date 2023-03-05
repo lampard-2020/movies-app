@@ -1,6 +1,6 @@
 package com.omdb.movie.data
 
-sealed class ErrorType{
+sealed class ErrorType {
     class ResponseError(val errorCode: String? = null, val message: String = "Response Error") :
         ErrorType()
 
